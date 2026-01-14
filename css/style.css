@@ -1,0 +1,148 @@
+@import url(reset.css);
+@import url(common.css);
+
+/* style.css */
+:root {
+  --bg: #05070c;
+
+  /* 네가 요청한 컬러 */
+  --c1: #76c2e6; /* 시작: 차가운 파랑 */
+  --c2: #00d1ff; /* 중간: 시안 */
+  --c3: #ffb800; /* 끝: 따뜻한 오렌지 */
+
+  --text: rgba(255, 255, 255, 0.9);
+  --sub: rgba(255, 255, 255, 0.75);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: radial-gradient(
+      1200px 800px at 50% 45%,
+      rgba(255, 255, 255, 0.02),
+      transparent 60%
+    ),
+    var(--bg);
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial,
+    sans-serif;
+}
+
+/* 캔버스 풀스크린 */
+canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* 중앙 작은 불꽃 코어 */
+.core {
+  position: fixed;
+  left: 50%;
+  top: 45%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: var(--c1);
+  box-shadow: 0 0 10px rgba(118, 194, 230, 0.9),
+    0 0 24px rgba(118, 194, 230, 0.65), 0 0 60px rgba(118, 194, 230, 0.35);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.hint {
+  position: fixed;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  color: var(--sub);
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  opacity: 0.85;
+  user-select: none;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* 가운데 네모 박스(캐릭터 영역 대체) */
+.panel {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  width: min(560px, 86vw);
+  padding: 26px 22px;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  color: var(--text);
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.panel.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.panel__placeholder {
+  width: 100%;
+  height: 170px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  background: radial-gradient(
+      600px 240px at 50% 40%,
+      rgba(255, 184, 0, 0.18),
+      rgba(0, 209, 255, 0.06) 55%,
+      rgba(255, 255, 255, 0.03) 100%
+    ),
+    rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel h1 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.panel p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--sub);
+}
+
+.btn {
+  margin-top: 16px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
