@@ -8,6 +8,17 @@
   </head>
   <body>
     <canvas id="fx"></canvas>
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+      <filter id="watercolor">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.02"
+          numOctaves="3"
+          result="noise"
+        />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+      </filter>
+    </svg>
 
     <div class="core" id="core" aria-hidden="true"></div>
 
@@ -15,9 +26,7 @@
 
     <div class="panel" id="panel" role="dialog" aria-label="intro panel">
       <div class="panel__placeholder" aria-hidden="true"></div>
-      <h1>도깨비 주식회사</h1>
       <p>5명의 캐릭터 등장하려하는데 어떻게 생각하세요?</p>
-      <button class="btn" type="button">입장하기</button>
     </div>
     <script src="js/main.js"></script>
   </body>

@@ -38,6 +38,8 @@ canvas {
   inset: 0;
   width: 100vw;
   height: 100vh;
+  /* 아래 줄 추가: 위 SVG 필터를 적용해 경계를 구불구불하게 만듦 */
+  filter: url(#watercolor);
 }
 
 /* 중앙 작은 불꽃 코어 */
